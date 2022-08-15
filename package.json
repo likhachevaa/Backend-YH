@@ -4,7 +4,8 @@
   "description": "Test backend for YH",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,12 @@
   "bugs": {
     "url": "https://github.com/likhachevaa/Backend-YH/issues"
   },
-  "homepage": "https://github.com/likhachevaa/Backend-YH#readme"
+  "homepage": "https://github.com/likhachevaa/Backend-YH#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }
