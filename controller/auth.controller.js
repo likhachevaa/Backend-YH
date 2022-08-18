@@ -85,6 +85,30 @@ class authController {
 
         }
     } 
+    async getUser(req, res) {
+        try{
+            const {username, password} = req.body
+            // const username = req.params.username // из параметра запроса получаем username
+            // const p = req.params.password 
+            const userdb = await db.query('SELECT * FROM usersMain where username = $1', [username])
+            const user = userdb.rows[0]
+            console.log(user, "userTyt")
+
+            if (!user) {
+                return res.status(400).json({message: `пользователь ${username} не найден`})
+            }
+            const validPassword = bcrypt.compareSync(password, user.password)
+            if(!validPassword) {
+                return res.status(400).json({message: `Введен не верный пароль`})
+            }
+
+            return res.json({username})
+           
+        }catch (e) {
+            console.log(e)
+            res.status(400).json({message: 'Login error'})
+        }
+    }
 }
 
 module.exports = new authController()
